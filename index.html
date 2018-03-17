@@ -1,0 +1,55 @@
+<html>
+  <head>
+  </head>
+  <body>
+    <h2>Data</h2>
+    <div>
+      <span id="username">Username</span>
+      <span id="age">Age</span>
+    </div>
+    <br />
+    <h2>Form</h2>
+    <form>
+      <div>
+        <label for="username">Username: </label><input oninput="onUsernameInput(this)" id="username-input" name="username"/>
+      </div>
+      <br />
+      <div>
+        <label for="age">Age: </label><input id="age-input" name="age"/>
+      </div>
+      <br />
+      <input onclick="onChange()" id="change-input" type="button" value="Change" />
+    </form>
+    <script>
+      const usernameSpan = document.getElementById('username');
+      const ageSpan = document.getElementById('age');
+
+      usernameSpan.innerText = 'David';
+      ageSpan.innerText= 28;
+
+      function onUsernameInput(usernameInput) {
+        const { value } = usernameInput;
+        const changeInput = document.getElementById('change-input');
+        console.log(value);
+        if(value.match("[A-Za-z0-9]+")) {
+          changeInput.disabled = false;
+        } else {
+          changeInput.disabled = true;
+        }
+      }
+
+      function onChange(event) {
+        const usernameInput = document.getElementById('username-input');
+        const ageInput = document.getElementById('age-input');
+        change(usernameInput.value, ageInput.value)
+      }
+
+      function change(username = 'Ivica', age = 25) {
+        const usernameSpan = document.getElementById('username');
+        const ageSpan = document.getElementById('age');
+        usernameSpan.innerText = username;
+        ageSpan.innerHTML = age;
+      }
+    </script>
+  </body>
+</html>
